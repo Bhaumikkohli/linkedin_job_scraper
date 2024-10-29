@@ -1,0 +1,53 @@
+LinkedIn has recently strengthened their anti-scraping measures, and attempting to scrape job listings without authentication is likely to be blocked quickly. Let me explain the options and provide a better solution:
+
+Public API Approach (Recommended):
+LinkedIn offers a public API through their developer platform. This is the most reliable and ethical way to access LinkedIn data.
+
+Here's how we can modify our scraper to use the official LinkedIn API:
+LinkedIn API Job ScraperClick to open code
+To use this updated version, you'll need to:
+
+Create a LinkedIn Developer account:
+
+Go to https://www.linkedin.com/developers/
+Create a new app
+Get your Client ID and Client Secret
+Add "http://localhost:8000/callback" to allowed redirect URLs
+
+
+Update the config.py with your credentials:
+
+pythonCopyCLIENT_ID = "your_client_id"
+CLIENT_SECRET = "your_client_secret"
+
+Install additional requirements:
+
+bashCopypip install requests oauthlib
+
+Run the scraper:
+
+bashCopylinkedin-scraper --position "Software Engineer" --num-posts 10 --output-dir ./jobs
+Alternative Approaches:
+
+Use Indeed's API instead:
+
+Indeed offers a more accessible API
+Better documentation and easier authentication
+More lenient usage limits
+
+
+Use Seek's API (for Australia specifically):
+
+Seek is the primary job board in Australia
+They offer an API for partners
+More relevant for Australian job searches
+
+
+
+Would you like me to:
+
+Modify the scraper to use Indeed's API instead?
+Add support for Seek's API?
+Create a version that combines multiple job board APIs?
+
+The choice depends on your specific needs. LinkedIn's API is more restrictive and requires business justification for access, so Indeed or Seek might be better alternatives for your use case.
