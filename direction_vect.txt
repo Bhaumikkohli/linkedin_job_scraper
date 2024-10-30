@@ -1,0 +1,55 @@
+Job Listing Vectorization
+This module provides functionality to convert job listing text files into vector embeddings using LlamaIndex. The vectorized output can be used for training LLM models or for similarity search applications.
+Prerequisites
+
+Python 3.8 or higher
+Job listing text files in a designated input directory
+Required packages (install using pip install -r requirements.txt)
+
+Directory Structure
+Copyproject/
+├── data/
+│   ├── raw_listings/        # Input directory for text files
+│   └── vectorized_listings/ # Output directory for vectors
+├── requirements.txt
+└── vectorize_listings.py
+Usage
+
+Place your job listing text files in the input directory (data/raw_listings/)
+Run the script:
+
+pythonCopyfrom vectorize_listings import JobListingVectorizer
+
+vectorizer = JobListingVectorizer(
+    input_dir="data/raw_listings",
+    output_dir="data/vectorized_listings",
+    batch_size=100  # Optional: adjust based on your memory constraints
+)
+vectorizer.process()
+Output Format
+The script generates a JSON file containing:
+
+Document ID
+Vector embeddings
+Associated metadata
+
+The vectors are generated using the sentence-transformers/all-MiniLM-L6-v2 model, which provides good performance for text similarity tasks.
+Error Handling
+
+The script includes comprehensive error handling and logging
+Failed files are skipped with error messages logged
+Process continues even if individual files or batches fail
+
+Performance Considerations
+
+Adjust batch_size based on available memory
+Default embedding model is optimized for balance of speed and quality
+Processing time depends on number and size of job listings
+
+Integration Notes
+This script is designed to be integrated into existing job listing processing pipelines. The vectorized output can be used to:
+
+Train custom LLM models
+Create embedding-based search systems
+Generate job similarity metrics
+Power recommendation systems
